@@ -9,6 +9,10 @@ body {
   height: 100vh;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .weather-app {
   /* font-family: Cerebri-Sans, Helvetica, Arial, sans-serif; */
   background: #fff;
@@ -47,7 +51,7 @@ body {
   margin-bottom: 5px;
   color: #27214266;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 18px;
   list-style: none;
 }
 .weather-app ul {
@@ -57,4 +61,26 @@ body {
 .footer-block {
   display: block;
   margin-top: 20px;
+}
+
+.weather-temperature img {
+  margin-right: 5px;
+  width: 100px;
+}
+.weather-temperature strong {
+  color: #272142;
+  font-weight: 400;
+  font-size: 64px;
+  /* line-height: 1; */
+}
+
+.units {
+  /* font-size: 16px; */
+  /* text-decoration: none; */
+  /* cursor: pointer; */
+  position: relative;
+  top: -35px;
+}
+
+.wind-humidity-info {
 }

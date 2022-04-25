@@ -54,6 +54,11 @@ a {
   line-height: 18px;
   list-style: none;
 }
+
+.weather-app #description {
+  text-transform: capitalize;
+}
+
 .weather-app ul {
   padding: 0;
 }

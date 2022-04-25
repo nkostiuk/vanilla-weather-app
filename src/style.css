@@ -82,3 +82,7 @@ a {
   position: relative;
   top: -35px;
 }
+
+input::placeholder {
+  font-style: italic;
+}

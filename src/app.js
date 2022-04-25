@@ -1,7 +1,5 @@
 let apiKey = "1d81c247d22842a0bce17c833b8a5ff0";
 let units = "metric";
-let city = "Paris";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
 //formates date from timestamp getted from weather api
 function formateDate(timestamp) {
@@ -30,7 +28,7 @@ function formateDate(timestamp) {
 }
 
 function displayTemperature(response) {
-  console.log(response);
+  //   console.log(response);
   let temp = Math.round(response.data.main.temp);
   let city = response.data.name;
   let country = response.data.sys.country;
@@ -53,4 +51,17 @@ function displayTemperature(response) {
   document.querySelector("#humidity").innerHTML = `${humidity} %`;
 }
 
-axios.get(apiUrl).then(displayTemperature);
+function search(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-input").value;
+  search(searchInput);
+}
+
+search("Paris");
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);

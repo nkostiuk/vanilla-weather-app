@@ -1,6 +1,7 @@
 let apiKey = "1d81c247d22842a0bce17c833b8a5ff0";
 let units = "metric";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=${units}`;
+let city = "Paris";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
 //formates date from timestamp getted from weather api
 function formateDate(timestamp) {
@@ -37,6 +38,13 @@ function displayTemperature(response) {
   let wind = response.data.wind.speed;
   let humidity = response.data.main.humidity;
 
+  let iconEl = document.querySelector("#icon");
+
+  iconEl.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconEl.setAttribute("alt", description);
   document.querySelector("#date").innerHTML = formateDate(response.data.dt);
   document.querySelector("#main-temperature").innerHTML = temp;
   document.querySelector("#city-name").innerHTML = `${city}, ${country}`;

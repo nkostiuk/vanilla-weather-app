@@ -1,4 +1,5 @@
 body {
+  height: 100%;
   font-family: "Roboto";
   background: linear-gradient(
     to top,
@@ -6,7 +7,6 @@ body {
     rgb(166, 193, 238) 100%
   );
   background-repeat: no-repeat;
-  height: 100vh;
 }
 
 a {
@@ -19,7 +19,6 @@ a {
   border-radius: 16px;
   box-shadow: 0 30px 50px #41326414;
   padding: 15px 20px;
-  /* color: #878787; */
 }
 
 .weather-app-wrapper {
@@ -70,7 +69,7 @@ a {
 
 .weather-temperature img {
   margin-right: 5px;
-  width: 100px;
+  width: 90px;
 }
 .weather-temperature strong {
   color: #272142;
@@ -80,12 +79,6 @@ a {
 }
 
 .units {
-  /* font-size: 16px; */
-  /* text-decoration: none; */
-  /* cursor: pointer; */
   position: relative;
   top: -35px;
-}
-
-.wind-humidity-info {
 }

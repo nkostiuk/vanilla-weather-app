@@ -55,7 +55,7 @@ a {
   list-style: none;
 }
 
-.weather-app #description {
+.weather-app #description::first-letter {
   text-transform: capitalize;
 }
 

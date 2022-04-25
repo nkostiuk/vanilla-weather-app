@@ -2,7 +2,31 @@ let apiKey = "1d81c247d22842a0bce17c833b8a5ff0";
 let units = "metric";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=${units}`;
 
-// console.log(apiUrl);
+//formates date from timestamp getted from weather api
+function formateDate(timestamp) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let date = new Date(timestamp * 1000);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let day = days[date.getDay()];
+  return `Last update: ${day}, ${hours}:${minutes}`;
+}
 
 function displayTemperature(response) {
   console.log(response);
@@ -13,6 +37,7 @@ function displayTemperature(response) {
   let wind = response.data.wind.speed;
   let humidity = response.data.main.humidity;
 
+  document.querySelector("#date").innerHTML = formateDate(response.data.dt);
   document.querySelector("#main-temperature").innerHTML = temp;
   document.querySelector("#city-name").innerHTML = `${city}, ${country}`;
   document.querySelector("#description").innerHTML = description;

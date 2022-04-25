@@ -86,3 +86,39 @@ a {
 input::placeholder {
   font-style: italic;
 }
+
+.units .active-link {
+  color: #272142;
+  cursor: default;
+}
+
+.btn-outline-secondary {
+  border-color: #240e87 !important;
+  color: #240e87 !important;
+}
+.btn-outline-secondary:hover {
+  border-color: #240e87 !important;
+  background: #3a48a4 !important;
+  color: #fff !important;
+}
+
+.btn-primary {
+  background: #3a48a4 !important;
+  /* background: #240e87 !important; */
+  border-color: #3a48a4 !important;
+}
+.btn-primary:hover {
+  /* background: #3a48a4 !important; */
+  background: #240e87 !important;
+  border-color: #240e87 !important;
+}
+
+.search-button:focus {
+  box-shadow: none !important;
+  background-color: #3a48a4 !important;
+  border-color: #3a48a4 !important;
+}
+
+.location:focus {
+  box-shadow: none !important;
+}

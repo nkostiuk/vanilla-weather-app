@@ -32,7 +32,7 @@
 
           <form id="search-form">
             <div class="row">
-              <div class="col-10 mt-3 m-auto">
+              <div class="col-10 mt-3 mb-2 m-auto">
                 <div class="input-group">
                   <input
                     type="search"
@@ -43,7 +43,7 @@
                   <input
                     type="submit"
                     value="Search"
-                    class="btn btn-primary py-2"
+                    class="btn btn-primary py-2 search-button"
                   />
                   <button
                     class="btn btn-outline-secondary d-inline-flex align-items-center location"
@@ -58,7 +58,7 @@
           <div class="city-overview">
             <h2 class="heading-2" id="city-name"></h2>
             <ul>
-              <li id="date">Last update: Sunday, 14:50</li>
+              <li id="date"></li>
               <li id="description"></li>
             </ul>
           </div>
@@ -70,7 +70,10 @@
 
                 <div class="float-left">
                   <strong id="main-temperature"></strong>
-                  <span class="units">°C| <a href="#">°F</a> </span>
+                  <span class="units">
+                    <a href="#" id="celsius-link" class="active-link">°C</a> |
+                    <a href="#" id="fahrenheit-link">°F</a>
+                  </span>
                 </div>
               </div>
             </div>

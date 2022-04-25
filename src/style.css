@@ -122,3 +122,20 @@ input::placeholder {
 .location:focus {
   box-shadow: none !important;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  color: black;
+}
+
+.icon {
+  width: 80px;
+}
+
+.weather-forecast-day {
+  opacity: 0.5;
+}
+.weather-forecast-temp-min {
+  opacity: 0.5;
+}

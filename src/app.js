@@ -1,6 +1,9 @@
 let apiKey = "1d81c247d22842a0bce17c833b8a5ff0";
 let units = "metric";
 let celsiusTemp = null;
+
+let coords = null;
+
 //formates date from timestamp getted from weather api
 function formateDate(timestamp) {
   let days = [
@@ -27,8 +30,58 @@ function formateDate(timestamp) {
   return `Last update: ${day}, ${hours}:${minutes}`;
 }
 
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(forecast[0].weather[0].icon);
+  console.log(response.data.daily[0].temp.max);
+
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (forecastDay) {
+    forecastHTML =
+      forecastHTML +
+      `
+              <div class="col-2">
+                <div class="weather-forecast-day">${forecastDay.dt}</div>
+              <img  
+                    class="icon"
+                    src="http://openweathermap.org/img/wn/${
+                      forecastDay.weather[0].icon
+                    }@2x.png"
+                    alt=""
+                />
+                <div class="weather-forecast-temperature">
+                  <span class="weather-forecast-temp-max">${Math.round(
+                    forecastDay.temp.max
+                  )}°</span>
+                  <span class="weather-forecast-temp-min">${Math.round(
+                    forecastDay.temp.min
+                  )}°</span>
+                </div>
+              </div>
+            `;
+  });
+
+  forecastHTML += `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+//get forecast for the next 5-7 days and call the function to display data
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}&exclude=minutely,hourly`;
+
+  //   console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
+//display the main info (temperature, wind etc.)
 function displayTemperature(response) {
   //   console.log(response);
+
   celsiusTemp = Math.round(response.data.main.temp);
   let city = response.data.name;
   let country = response.data.sys.country;
@@ -49,10 +102,13 @@ function displayTemperature(response) {
   document.querySelector("#description").innerHTML = description;
   document.querySelector("#wind").innerHTML = `${wind} km/h`;
   document.querySelector("#humidity").innerHTML = `${humidity} %`;
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
   axios.get(apiUrl).then(displayTemperature);
 }
 

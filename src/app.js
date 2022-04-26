@@ -111,7 +111,7 @@ function displayTemperature(response) {
   document.querySelector("#main-temperature").innerHTML = celsiusTemp;
   document.querySelector("#city-name").innerHTML = `${city}, ${country}`;
   document.querySelector("#description").innerHTML = description;
-  document.querySelector("#wind").innerHTML = `${wind} km/h`;
+  document.querySelector("#wind").innerHTML = `${Math.round(wind * 3.6)} km/h`;
   document.querySelector("#humidity").innerHTML = `${humidity} %`;
 
   getForecast(response.data.coord);

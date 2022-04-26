@@ -30,22 +30,32 @@ function formateDate(timestamp) {
   return `Last update: ${day}, ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
   let forecast = response.data.daily;
   console.log(forecast[0].weather[0].icon);
   console.log(response.data.daily[0].temp.max);
 
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   let forecastHTML = `<div class="row">`;
-
-  days.forEach(function (forecastDay) {
-    forecastHTML =
-      forecastHTML +
-      `
+  console.log(formatDay(forecast.dt));
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
               <div class="col-2">
-                <div class="weather-forecast-day">${forecastDay.dt}</div>
+                <div class="weather-forecast-day">${formatDay(
+                  forecastDay.dt
+                )}</div>
               <img  
                     class="icon"
                     src="http://openweathermap.org/img/wn/${
@@ -63,6 +73,7 @@ function displayForecast(response) {
                 </div>
               </div>
             `;
+    }
   });
 
   forecastHTML += `</div>`;
@@ -154,7 +165,7 @@ function error() {
 }
 
 function getCurrentLocation() {
-  navigator.geolocation.getCurrentPosition(retrivePosition, error);
+  navigator.geolocation.getCurrentPosition(retrivePosition);
 }
 
 search("Paris");

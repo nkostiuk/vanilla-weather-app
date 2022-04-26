@@ -165,7 +165,7 @@ function error() {
 }
 
 function getCurrentLocation() {
-  navigator.geolocation.getCurrentPosition(retrivePosition);
+  navigator.geolocation.getCurrentPosition(retrivePosition,error);
 }
 
 search("Paris");

@@ -40,13 +40,10 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast[0].weather[0].icon);
-  console.log(response.data.daily[0].temp.max);
-
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  console.log(formatDay(forecast.dt));
+
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
@@ -85,14 +82,11 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}&exclude=minutely,hourly`;
 
-  //   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
 //display the main info (temperature, wind etc.)
 function displayTemperature(response) {
-  //   console.log(response);
-
   celsiusTemp = Math.round(response.data.main.temp);
   let city = response.data.name;
   let country = response.data.sys.country;
@@ -151,7 +145,7 @@ function showCelsius() {
 }
 
 function retrivePosition(position) {
-  console.log(position);
+  
   let userCoords = { lat: "", lon: "" };
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=${units}`;
   userCoords.lat = position.coords.latitude;
@@ -165,7 +159,7 @@ function error() {
 }
 
 function getCurrentLocation() {
-  navigator.geolocation.getCurrentPosition(retrivePosition,error);
+  navigator.geolocation.getCurrentPosition(retrivePosition, error);
 }
 
 search("Paris");

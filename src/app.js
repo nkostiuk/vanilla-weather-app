@@ -145,7 +145,6 @@ function showCelsius() {
 }
 
 function retrivePosition(position) {
-  
   let userCoords = { lat: "", lon: "" };
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=${units}`;
   userCoords.lat = position.coords.latitude;
